@@ -7,6 +7,7 @@
 // @match       http*://*.hentaiheroes.com/*
 // @match       http*://*.pornstarharem.com/*
 // @updateURL   https://github.com/13072022/hh_gems/raw/main/HHGems.user.js
+// @downloadURL https://github.com/13072022/hh_gems/raw/main/HHGems.user.js
 // ==/UserScript==
 
 
