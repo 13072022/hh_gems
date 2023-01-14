@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        HH and PH Gems inventory
 // @namespace   https://github.com/13072022/hh_gems
-// @version     2
+// @version     3
 // @description Get the gems inventory in HH and PH
 // @grant       none
 // @match       http*://*.hentaiheroes.com/*
@@ -27,7 +27,8 @@ const prizes_worlds = {
   'sun':     [2, 13]
 };
 
-setTimeout(add_gems, 500);
+//setTimeout(add_gems, 500);
+window.onload = add_gems;
 
 function add_gems() {
   var gems;
@@ -44,8 +45,16 @@ function add_gems() {
       var prizes = {};
       var trolls = troll_names[troll_names_index[window.HH_UNIVERSE]];
       if (trolls == undefined) { trolls = []; }
+      var max_world = 18;
+      try { max_world = window.Hero.infos.questing.id_world} catch(e) { }
       var k = Object.keys(prizes_worlds);
-      k.forEach(e => { let s=[]; prizes_worlds[e].forEach(e1 => { if (trolls[e1-2]) {s.push(e1+"-"+trolls[e1-2])} } ); prizes[e] = s.join(", "); } );
+      k.forEach(e => {
+        let s=[];
+        prizes_worlds[e].forEach(e1 => {
+          if (e1 <= max_world && trolls[e1-2]) { s.push(e1+"-"+trolls[e1-2]) }
+        });
+        prizes[e] = s.join(", ");
+      });
       var e = Object.keys(gems);
       var table = `<table class='gems-table'><tbody>
                 ${e.map(e=>`<tr><td><img src='https://th.hh-content.com/pictures/design/gems/${e}.png'></td>
