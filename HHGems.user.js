@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        HH and PH Gems inventory
 // @namespace   https://github.com/13072022/hh_gems
-// @version     3
+// @version     4
 // @description Get the gems inventory in HH and PH
 // @grant       none
 // @match       http*://*.hentaiheroes.com/*
@@ -27,8 +27,7 @@ const prizes_worlds = {
   'sun':     [2, 13]
 };
 
-//setTimeout(add_gems, 500);
-window.onload = add_gems;
+setTimeout(add_gems, 500);
 
 function add_gems() {
   var gems;
@@ -55,11 +54,11 @@ function add_gems() {
         });
         prizes[e] = s.join(", ");
       });
-      var e = Object.keys(gems);
+      var gemsSorted = Object.keys(gems).sort(function(a,b){return gems[b].amount-gems[a].amount}); // sort bu gems amount in descending order
       var table = `<table class='gems-table'><tbody>
-                ${e.map(e=>`<tr><td><img src='https://th.hh-content.com/pictures/design/gems/${e}.png'></td>
-                                <td>${gems[e].amount}</td><td>&nbsp;</td><td>${prizes[e]}</td></tr>`).join("")}
-                   </tody></table>`.replace(/(\n| {4})/g,"");
+                ${gemsSorted.map(e=>`<tr><td><img src='https://th.hh-content.com/pictures/design/gems/${e}.png'></td>
+                                     <td>${gems[e].amount}</td><td>&nbsp;</td><td>${prizes[e]}</td></tr>`).join("")}
+                   </tbody></table>`.replace(/(\n| {2})/g,"");
       btn.innerHTML = `<style>.gems-table {text-align:left;} .gems-table img{height:25px;width:25px}
 .gems {width:37px;display:block;padding:6px 12px;background-size:contain;background-image: url("https://hh2.hh-content.com/pictures/design/gems/all.png")</style>
       <div class="gems" hh_title="`+table+`" tooltip>&nbsp;</div>`;
