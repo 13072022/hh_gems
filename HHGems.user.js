@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        HH and PH Gems inventory
 // @namespace   https://github.com/13072022/hh_gems
-// @version     5
+// @version     6
 // @description Get the gems inventory in HH and PH
 // @grant       none
 // @match       http*://*.hentaiheroes.com/*
@@ -14,7 +14,7 @@ const troll_names_index = {
   'hentai':0,'horny_s':0,'nutaku':0,'test_h':0,'hh_eroges':0,'gay':0,'gh_nutaku':0,'gh_eroges':0,'star_t':1,'nutaku_t':1,'comix_c':2,'nutaku_c':2};
 const troll_names = [
   ['Dark Lord','Ninja Spy','Gruntt','Edwarda','Donatien','Silvanus','Bremen','Finalmecia','Roko Senseï','Karole','Jackson&#8217;s Crew','Pandora Witch','Nike','Sake','WereBunny Police','Auga'],
-  ['Headmistress Asa Akira','Sammy Jayne','Ivy Winters','Lily Cade','Amia Miley','Alyssa Reece','Kelly Kline'],
+  ['Headmistress Asa Akira','Sammy Jayne','Ivy Winters','Sophia Jade','Amia Miley','Alyssa Reece','Kelly Kline'],
   ['BodyHack', 'Grey Golem', 'The Nymph', 'Athicus Ho&#8217;ole', 'The Mimic', 'Cockatrice', 'Pomelo']];
 const prizes_worlds = {
   'darkness':[3, 6, 14],
@@ -29,18 +29,32 @@ const prizes_worlds = {
 
 setTimeout(add_gems, 500);
 
+function update_resources() {
+  var params = { action: "hero_get_resources" };
+  hh_ajax(params, function(data) {
+    localStorage.HH_gems_amount = JSON.stringify(data.gems);
+    console.log("Gems inventory updated");
+    add_gems();
+  });
+}
+
 function add_gems() {
   var gems;
   if (window.location.href.indexOf("/harem/") > -1) {
     gems = window.player_gems_amount;
-    if (gems == undefined) {console.log("player_gems_amount not found"); setTimeout(add_gems,500); return 0;}
-    localStorage.HH_gems_amount = JSON.stringify(gems);
+    if (gems != undefined) {
+      localStorage.HH_gems_amount = JSON.stringify(gems);
+    }
   }
   gems = localStorage.HH_gems_amount;
   if (gems) {
     gems = JSON.parse(gems);
     var btn = document.getElementById('chat_btn');
     if (btn) {
+      // ----- update on click
+      try { $("a#chat_btn").prop("onclick", null).off("click"); } catch(e) {}
+      btn.addEventListener("click", update_resources);
+      // -----
       var prizes = {};
       var trolls = troll_names[troll_names_index[window.HH_UNIVERSE]];
       if (trolls == undefined) { trolls = []; }
@@ -63,7 +77,8 @@ function add_gems() {
 .world {border: 1px solid; border-radius: 15px; width: 23px !important; display: inline-block; text-align: center;}
 .gems {width:37px;display:block;padding:6px 12px;background-size:contain;background-image: url("https://hh2.hh-content.com/pictures/design/gems/all.png")</style>
       <div class="gems" hh_title="`+table+`" tooltip>&nbsp;</div>`;
-      console.log("gems inventory added");
+      console.log("Gems inventory added");
     }
   }
 }
+
