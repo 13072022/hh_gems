@@ -14,7 +14,7 @@ const troll_names_index = {
   'hentai':0,'horny_s':0,'nutaku':0,'test_h':0,'hh_eroges':0,'gay':0,'gh_nutaku':0,'gh_eroges':0,'star_t':1,'nutaku_t':1,'comix_c':2,'nutaku_c':2};
 const troll_names = [
   ['Dark Lord','Ninja Spy','Gruntt','Edwarda','Donatien','Silvanus','Bremen','Finalmecia','Roko Senseï','Karole','Jackson&#8217;s Crew','Pandora Witch','Nike','Sake','WereBunny Police','Auga'],
-  ['Headmistress Asa Akira','Sammy Jayne','Ivy Winters','Sophia Jade','Amia Miley','Alyssa Reece','Kelly Kline'],
+  ['Headmistress Asa Akira','Sammy Jayne','Ivy Winters','Sophia Jade','Amia Miley','Alyssa Reece','Kelly Kline','Jamie Brooks','Jordan Kingsley'],
   ['BodyHack', 'Grey Golem', 'The Nymph', 'Athicus Ho&#8217;ole', 'The Mimic', 'Cockatrice', 'Pomelo']];
 const prizes_worlds = {
   'darkness':[3, 6, 14],
