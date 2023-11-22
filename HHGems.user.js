@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        HH and PH Gems inventory
 // @namespace   https://github.com/13072022/hh_gems
-// @version     6
+// @version     7
 // @description Get the gems inventory in HH and PH
 // @grant       none
 // @match       http*://*.hentaiheroes.com/*
@@ -13,7 +13,7 @@
 const troll_names_index = {
   'hentai':0,'horny_s':0,'nutaku':0,'test_h':0,'hh_eroges':0,'gay':0,'gh_nutaku':0,'gh_eroges':0,'star_t':1,'nutaku_t':1,'comix_c':2,'nutaku_c':2};
 const troll_names = [
-  ['Dark Lord','Ninja Spy','Gruntt','Edwarda','Donatien','Silvanus','Bremen','Finalmecia','Roko Senseï','Karole','Jackson&#8217;s Crew','Pandora Witch','Nike','Sake','WereBunny Police','Auga'],
+  ['Dark Lord','Ninja Spy','Gruntt','Edwarda','Donatien','Silvanus','Bremen','Finalmecia','Roko Senseï','Karole','Jackson&#8217;s Crew','Pandora Witch','Nike','Sake','WereBunny Police','Auga','Gross'],
   ['Headmistress Asa Akira','Sammy Jayne','Ivy Winters','Sophia Jade','Amia Miley','Alyssa Reece','Kelly Kline','Jamie Brooks','Jordan Kingsley'],
   ['BodyHack', 'Grey Golem', 'The Nymph', 'Athicus Ho&#8217;ole', 'The Mimic', 'Cockatrice', 'Pomelo']];
 const prizes_worlds = {
